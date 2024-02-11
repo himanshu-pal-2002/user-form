@@ -4,9 +4,11 @@ from rest_framework import status
 from django.core.mail import send_mail
 from django.conf import settings
 from .serializers import UserFormSerializer
+from django.shortcuts import render
+# from .forms import *
 
 
-class UserFormView(APIView):
+class UserRegistrationView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = UserFormSerializer(data=request.data)
         if serializer.is_valid():
@@ -22,3 +24,7 @@ class UserFormView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# def form(request):
+#     UO=Uform()
+#     d={'UO':UO}
+#     return render(request,'index.html',d)

@@ -2,7 +2,7 @@ from django.db import models
 
 # Create Models for User-Form:
 
-class User_Form(models.Model):
+class UserRegistration(models.Model):
     
     name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
