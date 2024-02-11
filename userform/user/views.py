@@ -6,6 +6,13 @@ from django.conf import settings
 from .serializers import UserFormSerializer
 from django.shortcuts import render
 # from .forms import *
+from rest_framework.generics import ListCreateAPIView
+from .models import *
+
+class UserListCreate(ListCreateAPIView):
+    queryset = UserRegistration.objects.all()
+    serializer_class = UserFormSerializer
+
 
 
 class UserRegistrationView(APIView):
@@ -16,7 +23,7 @@ class UserRegistrationView(APIView):
             send_mail(
                 'Registration Successful',
                 f'Hello {user.name}, your registration was successful. Your details are Name: {user.name}, Date of Birth: {user.date_of_birth}, Email: {user.email}, and Phone Number: {user.phone_number}.',
-                settings.DEFAULT_FROM_EMAIL,
+                'palhimanshu206246@gmail.com',
                 [user.email],
                 fail_silently=False
             )
@@ -24,7 +31,4 @@ class UserRegistrationView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# def form(request):
-#     UO=Uform()
-#     d={'UO':UO}
-#     return render(request,'index.html',d)
+

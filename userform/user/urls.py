@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import UserRegistrationView
-from .views import *
+from .views import UserRegistrationView,UserListCreate
+# from .views import *
 
 
 urlpatterns=[
-    # path('form/',form,name='form'),
+     path('', UserListCreate.as_view(), name='UserListCreate'),
     path('register/', UserRegistrationView.as_view(), name='UserRegistrationView'),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    
 ]
